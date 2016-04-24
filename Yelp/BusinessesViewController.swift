@@ -41,11 +41,6 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
 //            print(businesses.count)
 //        })
         
-        
-
-        
-        
-
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
