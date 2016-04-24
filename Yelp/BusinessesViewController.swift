@@ -11,9 +11,11 @@ import UIKit
 class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var businesses: [Business] = []
+    var searchTerm = ""
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var businessesTableView: UITableView!
+    @IBOutlet var sortingSegment: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,8 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
         
         businessesTableView.delegate = self
         businessesTableView.dataSource = self
+        
+        searchBusinesses()
         
 //        Business.searchWithTerm("restaurant", completion: { (businesses: [Business]!, error: NSError!) -> Void in
 //            self.businesses = businesses
@@ -38,18 +42,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
 //        })
         
         
-        Business.searchWithTerm("", sort: .HighestRated, categories: [], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            
-            for business in businesses {
-//                print(business.name!)
-//                print(business.address!)
-//                print(business.rating!)
-                print(business.categories!)
-            }
-            
-            self.businessesTableView.reloadData()
-        }
+
         
         
 
@@ -59,10 +52,32 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
         return businesses.count
     }
     
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if (indexPath.row%2 == 0) {
+//            
+//        } else {
+//            
+//            cell.backgroundColor = UIColor(red: 215/255, green: 66/255, blue: 29/255, alpha: 0.2)
+//            
+//        }
+//    }
+
+    @IBAction func changedSortChoice(sender: AnyObject) {
+//        businessesTableView.setContentOffset(CGPointZero, animated: true)
+        searchBusinesses()
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("business", forIndexPath: indexPath) as! BusinessCell
         
         let business = businesses[indexPath.row]
+        
+        let index = businesses.indexOf(business)
+        
+//        print(index)
+        
+        cell.backgroundColor  = (indexPath.row % 2 == 0) ? UIColor.whiteColor() : UIColor(red: 215/255, green: 66/255, blue: 29/255, alpha: 0.2);
+
         
         cell.businessName.text = business.name
         cell.categories.text = business.categories
@@ -113,9 +128,6 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
 
         UIApplication.sharedApplication().openURL(NSURL(string: "https://www.google.com/maps/dir/Current+Location/" + lat + "," + lon)!)
         
-        
-        
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
@@ -124,23 +136,17 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
     
     
-    
-    
     //If tap on screen
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.searchBar.endEditing(true)
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
 
-        //
-//        servicesCollectionView.userInteractionEnabled = false
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-
-        
-//        servicesCollectionView.userInteractionEnabled = true
         
     }
     
@@ -151,6 +157,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
 //        print("clicked")
+        searchTerm = searchBar.text!
         self.searchBar.endEditing(true)
         
         self.searchBusinesses()
@@ -158,8 +165,28 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     func searchBusinesses() {
         
+//        case BestMatched = 0, Distance, HighestRated
+    
+        var k:YelpSortMode? = .Distance
         
+        if (sortingSegment.selectedSegmentIndex == 0) {
+            k = .HighestRated
+        } else if (sortingSegment.selectedSegmentIndex == 1) {
+//            sort = 1
+        } else if (sortingSegment.selectedSegmentIndex == 2) {
+             k = .BestMatched
+        }
         
+//        var k:YelpSortMode? = .Distance
+        
+        Business.searchWithTerm(searchTerm, sort: k, categories: [], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            
+            print(self.businesses.count)
+            
+            self.businessesTableView.reloadData()
+            self.businessesTableView.setContentOffset(CGPointZero, animated: true)
+        }
         
         
     }

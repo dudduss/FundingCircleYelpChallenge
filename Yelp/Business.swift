@@ -24,7 +24,7 @@ class Business: NSObject {
     
     init(dictionary: NSDictionary) {
         
-        print(dictionary)
+//        print(dictionary)
         
         name = dictionary["name"] as? String
         
