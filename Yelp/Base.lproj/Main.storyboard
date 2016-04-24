@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2xI-yr-O5N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gKp-tX-rvQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Businesses View Controller-->
+        <!--Yelp Client-->
         <scene sceneID="5L9-Uz-lNK">
             <objects>
                 <viewController id="2xI-yr-O5N" customClass="BusinessesViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,14 +14,120 @@
                         <viewControllerLayoutGuide type="bottom" id="VBY-gq-v8E"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XhR-oz-92f">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="What are you looking for?" translatesAutoresizingMaskIntoConstraints="NO" id="JlH-qI-U9w">
+                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lZM-RK-G8m">
+                                <rect key="frame" x="0.0" y="109" width="320" height="459"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="business" rowHeight="220" id="U2f-dM-Y9p" customClass="BusinessCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="220"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U2f-dM-Y9p" id="kQy-7R-HIO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="219.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mec-UF-rd4">
+                                                    <rect key="frame" x="8" y="56" width="224" height="107"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Burt's Burger Place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUr-gx-mU2">
+                                                    <rect key="frame" x="8" y="9" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="0.84313732389999996" green="0.2588235438" blue="0.11372549830000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="American, Burgers, Shakes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hju-EC-vGI">
+                                                    <rect key="frame" x="8" y="29" width="229" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.4 mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJe-hK-MsA">
+                                                    <rect key="frame" x="252" y="129" width="47" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="39 reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs0-Tk-eTf">
+                                                    <rect key="frame" x="181" y="181" width="78" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                                    <color key="textColor" red="0.84313732389999996" green="0.2588235438" blue="0.11372549830000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeV-oT-Fez">
+                                                    <rect key="frame" x="8" y="171" width="165" height="40.5"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyx-JU-al8">
+                                                    <rect key="frame" x="246" y="70" width="59" height="51"/>
+                                                    <color key="backgroundColor" red="0.84313732389999996" green="0.2588235438" blue="0.11372549830000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <state key="normal" image="map"/>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="businessImage" destination="Mec-UF-rd4" id="B2D-ds-WjH"/>
+                                            <outlet property="businessName" destination="GUr-gx-mU2" id="gZp-Mg-GtS"/>
+                                            <outlet property="categories" destination="hju-EC-vGI" id="tmg-iG-kpP"/>
+                                            <outlet property="distance" destination="HJe-hK-MsA" id="hFB-ep-GRf"/>
+                                            <outlet property="getDirections" destination="Vyx-JU-al8" id="mqB-Mw-JOm"/>
+                                            <outlet property="numRatings" destination="Bs0-Tk-eTf" id="PFR-Jy-ge4"/>
+                                            <outlet property="ratingImage" destination="yeV-oT-Fez" id="HdC-rm-R83"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2xI-yr-O5N" id="0Ak-Cb-B1R"/>
+                                    <outlet property="delegate" destination="2xI-yr-O5N" id="g7e-P7-9UW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Yelp Client" id="Vda-xa-Tgz"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="businessesTableView" destination="lZM-RK-G8m" id="ngk-TS-Xtt"/>
+                        <outlet property="searchBar" destination="JlH-qI-U9w" id="d4j-4s-Gfu"/>
+                        <outlet property="searchDisplayController" destination="LIb-JU-WOa" id="PID-ej-Ry9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="LIb-JU-WOa">
+                    <connections>
+                        <outlet property="delegate" destination="2xI-yr-O5N" id="UOw-Ga-TNp"/>
+                        <outlet property="searchContentsController" destination="2xI-yr-O5N" id="0XT-rh-Vqb"/>
+                        <outlet property="searchResultsDataSource" destination="2xI-yr-O5N" id="PYV-XV-DiM"/>
+                        <outlet property="searchResultsDelegate" destination="2xI-yr-O5N" id="jP8-tA-6yd"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2547" y="358"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gbl-nN-xId">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gKp-tX-rvQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XcF-Rs-ym8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2xI-yr-O5N" kind="relationship" relationship="rootViewController" id="N3k-su-JIz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bcp-M7-h7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1788" y="358"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="map" width="25" height="25"/>
+    </resources>
 </document>
